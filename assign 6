@@ -1,0 +1,63 @@
+#a
+install.packages("pracma")
+library("pracma")
+f=function(x,y) 2*(2*x+3*y)/5
+I=integral2(f,xmin=0,xmax=1,ymin=0,ymax=1)
+I$Q
+#b
+gx<-function(y)f(1,y)
+gx1=integral(gx,0,1)
+gx1
+#c
+hy<-function(x)f(x,0)
+hy1=integral(hy,0,1)
+hy1
+#d
+f=function(x,y) x*y*2*(2*x+3*y)/5
+f1=integral2(f,0,1,0,1)
+f1$Q
+
+#Q2
+#a
+f=function(x,y) (x+y)/30
+x=c(0:3)
+y=c(0:2)
+M1=matrix(c(f(0,0:2),f(1,0:2),f(2,0:2),f(3,0:2)),nrow=4,ncol=3,byrow = TRUE)
+M1
+
+#b
+sum(M1)
+
+#c
+gx<-apply(M1,1,sum)
+
+#d
+hy<-apply(M1,2,sum)
+
+#e
+M1[1,2]/hy[2]
+
+#f
+    x<-c(0:3)
+  EX<-sum(x*g)
+  print(EX)
+  EX_square<-sum(x*x*g)
+  print(EX_square)
+  VarX=EX_square-(EX)*EX
+  print(VarX)
+  y<-c(0:2)
+  EY<-sum(y*h)
+  print(EY)
+  EY_square<-sum(y*y*h)
+  print(EY_square)
+  VarY=EY_square-(EY)*EY
+  print(VarY)
+  fun2<-function(x,y){
+    x*y*(x+y)/30
+  }
+  mat2<-matrix(c(fun2(0,0:2),fun2(1,0:2),fun2(2,0:2),fun2(3,0:2)),nrow=4,ncol=3,byrow=TRUE)
+  eXY<-sum(mat2)
+  covariance<-eXY-EX*EY
+  print(covariance)
+  correlation<-covariance/(sqrt(VarX*VarY))
+  print(correlation)  
